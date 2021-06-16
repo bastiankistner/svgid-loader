@@ -58,27 +58,24 @@ module.exports = {
     // processed before `next-image-loader`
 
     config.module.rules.push({
-      test: /\.svg$/i,
-      use: [
-        {
-          loader: 'svgid-loader',
-          options: {
-            id: 'root',
-            overwrite: true,
-          },
+    test: /\.svg$/i,
+    use: [{
+            loader: 'svgid-loader',
+            options: {
+                id: 'root',
+                overwrite: true,
+            },
         },
-        // optional: use svgo-loader to leverage SVGO
         {
-          loader: 'svgo-loader',
-          options: {
-            multipass: true,
-            plugins: require('svgo').extendDefaultPlugins([('convertStyleToAttrs', 'removeStyleElement')]),
-          },
-				},
+            loader: 'svgo-loader',
+            options: {
+                multipass: true,
+                plugins: require('svgo').extendDefaultPlugins([('convertStyleToAttrs', 'removeStyleElement')]),
+            },
+        },
       ],
     });
   }
-
   // ...
 }
 ```
