@@ -9,7 +9,7 @@ Simple loader to add an `id` attribute to your svgs.
 
 ## Configuration
 
-```json
+```js
 {
   id?: string, // value for the id attribute
   overwrite?: boolean // set false to not overwrite existing id
@@ -18,7 +18,7 @@ Simple loader to add an `id` attribute to your svgs.
 
 ## Usage
 
-```json
+```js
 {
   test: /\.svg$/i,
     use: [
