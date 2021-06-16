@@ -92,7 +92,7 @@ export const Svg = ({ data, ...rest }: { data: StaticImageData } & React.HTMLAtt
   // File components/HereWeUseSvgs.tsx
 
   import AuthSvg from '@fortawesome/fontawesome-pro/svgs/duotone/user-unlock.svg';
-  import { Svg } from '../Svg';
+  import { Svg } from './Svg';
   // ...
 
   return <Svg data={AuthSvg} />
