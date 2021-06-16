@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.0.12
+
+- `README.md` remove redundant `height` and `with` attributes from `svg` element in example
+
 ### 1.0.11
 
 - docs
