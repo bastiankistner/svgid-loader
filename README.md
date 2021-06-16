@@ -70,7 +70,7 @@ module.exports = {
 
 // File components/Svg.tsx
 
-export const Svg = ({ svg, ...rest }: { data: StaticImageData } & React.HTMLAttributes<SVGElement>) => {
+export const Svg = ({ data, ...rest }: { data: StaticImageData } & React.HTMLAttributes<SVGElement>) => {
 	return (
 		<svg
 			viewBox={`0 0 ${data.width} ${data.height}`}
