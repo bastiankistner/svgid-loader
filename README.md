@@ -1,18 +1,26 @@
 # svgid-loader
 
-Simple loader to add an `id` attribute to your svgs.
+Simple loader to add an `id` attribute to your svgs. 
+
+( Could / should be combined with SVGO loader to achieve SVGR-like flexibility. )
 
 **Install**
 
 - `yarn add svgid-loader -D`
 - `npm i svgid-loader -D`
 
-## Configuration
+## Configuration and recommended defaults
 
 ```js
 {
-  id?: string, // value for the id attribute
-  overwrite?: boolean // set false to not overwrite existing id
+  // value for the id attribute
+  id?: string,          // default = 'root'
+
+  // set false to not overwrite existing id
+  overwrite?: boolean   // default = false
+
+  // set a custom selector to match the container element (e.g. `symbol`)
+  selector?: string     // default = 'svg'
 }
 ```
 
@@ -24,9 +32,12 @@ Simple loader to add an `id` attribute to your svgs.
     use: [
       {
         loader: 'svgid-loader',
+
+        // provide options if you don't like the defaults
         options: {
-          id: 'root',
-          overwrite: true,
+          id: 'root',        // default value
+          overwrite: false,  // default value
+          selector: 'svg'    // default value
         },
       },
     ],
@@ -56,6 +67,14 @@ module.exports = {
             overwrite: true,
           },
         },
+        // optional: use svgo-loader to leverage SVGO
+        {
+          loader: 'svgo-loader',
+          options: {
+            multipass: true,
+            plugins: require('svgo').extendDefaultPlugins([('convertStyleToAttrs', 'removeStyleElement')]),
+          },
+				},
       ],
     });
   }
@@ -70,7 +89,7 @@ module.exports = {
 
 // File components/Svg.tsx
 
-export const Svg = ({ data, ...rest }: { data: StaticImageData } & React.HTMLAttributes<SVGElement>) => {
+export const Svg = ({ data, ...rest }: { data: StaticImageData } & React.SVGProps<SVGSVGElement>) => {
 	return (
 		<svg
 			viewBox={`0 0 ${data.width} ${data.height}`}

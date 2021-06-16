@@ -8,11 +8,13 @@ import type {Schema} from 'schema-utils/declarations/validate';
 interface LoaderOptions {
   id?: string;
   overwrite?: boolean;
+  selector?: string;
 }
 
 const defaultOptions: Required<LoaderOptions> = {
   id: 'root',
   overwrite: false,
+  selector: 'svg',
 };
 
 const schema: Schema = {
@@ -23,6 +25,9 @@ const schema: Schema = {
     },
     overwrite: {
       type: 'boolean',
+    },
+    selector: {
+      type: 'string',
     },
   },
 };
@@ -41,7 +46,9 @@ async function svgIdLoader(
 
     const root = parse(content);
 
-    const svgElements = root.querySelectorAll('svg');
+    const svgElements = root.querySelectorAll(
+      options.selector ?? defaultOptions.selector
+    );
 
     if (svgElements.length !== 1) {
       return content;
