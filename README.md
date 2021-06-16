@@ -1,8 +1,10 @@
 # svgid-loader
 
-Simple loader to add an `id` attribute to your svgs. 
+Simple loader to add an `id` attribute to your svgs.   
 
-( Could / should be combined with SVGO loader to achieve SVGR-like flexibility. )
+Can be applied to SVGs when you want to import SVGs through `<use>` tags (e.g. with `nextjs`). 
+
+And could / should be combined with SVGO loader to achieve SVGR-like flexibility.
 
 **Install**
 
@@ -90,8 +92,6 @@ export const Svg = ({ data, ...rest }: { data: StaticImageData } & React.SVGProp
 	return (
 		<svg
 			viewBox={`0 0 ${data.width} ${data.height}`}
-			width={data.width}
-			height={data.height}
 			{...rest}
 		>
 			<use href={`${data.src}#root`} />
